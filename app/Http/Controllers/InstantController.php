@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\instant;
 use App\Http\Requests\StoreinstantRequest;
 use App\Http\Requests\UpdateinstantRequest;
+use Illuminate\Http\Request;
 use App\Models\Instant as ModelsInstant;
 
 class InstantController extends Controller
@@ -26,7 +27,7 @@ class InstantController extends Controller
      */
     public function create()
     {
-        //
+        return view('instantForm');
     }
 
     /**
@@ -35,9 +36,15 @@ class InstantController extends Controller
      * @param  \App\Http\Requests\StoreinstantRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreinstantRequest $request)
+    public function store(Request $request)
     {
-        //
+        $data = [
+            'title' => $request->title,
+            'imgURL' => $request->imgURL
+        ];
+
+        Instant::create($data);
+        return redirect(route('landing'));
     }
 
     /**
@@ -82,8 +89,9 @@ class InstantController extends Controller
      */
     public function destroy($id)
     {
-        $instantToDelete = Instant::findOrFail($id);
-        $instantToDelete->delete();
+        // $instantToDelete = Instant::findOrFail($id);
+        // $instantToDelete->delete();
+        Instant::destroy($id);
         return back();
     }
 }

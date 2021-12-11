@@ -13,7 +13,7 @@
     
 
     <!-- Bootstrap core CSS -->
-<link href="instants-css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="{{asset('instants-css/bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- Favicons -->
 <link rel="apple-touch-icon" href="https://getbootstrap.com/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -79,48 +79,20 @@
 
 <main>
 
-  <!-- <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Album example</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
-          <a href="https://getbootstrap.com/docs/5.1/examples/album/#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="https://getbootstrap.com/docs/5.1/examples/album/#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
-      </div>
-    </div>
-  </section>-->
   <div class="album py-5 bg-light">
     <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-        @foreach ($instants as $instant)
-            
-        <div class="col">
-          <div class="card shadow-sm">
-            {{-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> --}}
-            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ $instant->imgURL }}" alt="No funciona">
-            <div class="card-body">
-              <p class="card-text">{{ $instant->title }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <form action="/instants/{{ $instant->id }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
-                  </form> 
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">10 - I Like</small>
-              </div>
-            </div>
-          </div>
+      <form action="{{route('instants.store')}}" method="POST">
+        @csrf
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">TITLE</label>
+          <input name="title" type="text" class="form-control" id="exampleFormControlInput1">
         </div>
-
-        @endforeach
-
-      </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">IMAGE URL</label>
+          <input name="imgURL" type="url" class="form-control" id="exampleFormControlInput1" >
+        </div>
+        <button type="submit" class="btn btn-sm btn-outline-secondary">Create</button>
+      </form>
     </div>
   </div>
 

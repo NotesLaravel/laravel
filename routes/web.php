@@ -22,6 +22,10 @@ use App\Http\Controllers\InstantController;
 // });
 
 
-Route::get('/', [LandingController::class, 'index']);
+Route::get('/', [LandingController::class, 'index'])->name('landing');
 
-Route::delete('/instants/{id}', [InstantController::class, 'destroy']);
+Route::get('/instants/create', [InstantController::class, 'create'])->name('instants.create');
+
+Route::post('/instants/create', [InstantController::class, 'store'])->name('instants.store');
+
+Route::delete('/instants/{id}', [InstantController::class, 'destroy'])->name('instants.destroy');
