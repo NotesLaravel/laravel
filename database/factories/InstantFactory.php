@@ -15,7 +15,7 @@ class InstantFactory extends Factory
     {
         return [
             'title' => $this->faker->company(),
-            'imgURL'=> $this->faker->image(),
+            'imgURL'=> $this->faker->imageUrl(),
         ];
     }
 }
