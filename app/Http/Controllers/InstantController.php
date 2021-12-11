@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\instant;
 use App\Http\Requests\StoreinstantRequest;
 use App\Http\Requests\UpdateinstantRequest;
+use App\Models\Instant as ModelsInstant;
 
 class InstantController extends Controller
 {
@@ -79,8 +80,10 @@ class InstantController extends Controller
      * @param  \App\Models\instant  $instant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(instant $instant)
+    public function destroy($id)
     {
-        //
+        $instantToDelete = Instant::findOrFail($id);
+        $instantToDelete->delete();
+        return back();
     }
 }

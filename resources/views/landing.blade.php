@@ -105,7 +105,11 @@
               <p class="card-text">{{ $instant->title }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                  <form action="/instants/{{ $instant->id }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                  </form> 
                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 </div>
                 <small class="text-muted">10 - I Like</small>

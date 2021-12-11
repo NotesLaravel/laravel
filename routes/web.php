@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InstantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,5 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [LandingController::class, 'index']);
+
+Route::delete('/instants/{id}', [InstantController::class, 'destroy']);
